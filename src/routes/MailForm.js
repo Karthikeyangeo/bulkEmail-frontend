@@ -22,7 +22,7 @@ const email_array_validation =  yup.array()
     //     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, "Invalid Email Address")
     //     .required("Mandatory field"),
 const formValidationSchema = yup.object({
-    name: yup.string().required("Mandatory Field"),
+    name: yup.string().required("Mandatory Field").min(4,'Min 4 Chars').max(15,'Max 15 Chars'),
     to:email_array_validation.required("Mandatory Field"),
     cc:email_array_validation,
     bcc:email_array_validation,
