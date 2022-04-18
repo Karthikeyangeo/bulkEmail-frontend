@@ -21,6 +21,9 @@ const email_array_validation =  yup.array()
     //     .min(5,"Minimum length of email should be 5 chars")
     //     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, "Invalid Email Address")
     //     .required("Mandatory field"),
+
+
+// Yup Form validation
 const formValidationSchema = yup.object({
     name: yup.string().required("Mandatory Field").min(4,'Min 4 Chars').max(15,'Max 15 Chars'),
     to:email_array_validation.required("Mandatory Field"),
@@ -33,7 +36,7 @@ const formValidationSchema = yup.object({
 //function to split the string and remove the null and change it to Array
   function toArray(str){
     if(str){
-         str = str.split(',').filter(x => x);       //filter(x => x) removes the null value in array 
+         str = str.split(',').filter(x => x);       //filter(x => x) returns the not null value in array 
          return str;
         }
     else return null;
