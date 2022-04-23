@@ -14,8 +14,7 @@ function App() {
     <div className="App">
       <Switch>
             {/* Each route is case, eg. - case '/about': */}
-          
-            
+  
           <Route path="/mailForm">
             <MailForm />
           </Route>
