@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {useFormik} from  "formik";
 import * as yup from 'yup';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { API } from '../globalData';
 import isEmail from 'validator/lib/isEmail'
 
@@ -65,7 +65,7 @@ function MailForm(){
 
     });
     
-    // const history = useHistory();
+    const history = useHistory();
       
     // function to add the Data object to array 
     const addData = (newValue) => {
@@ -75,7 +75,7 @@ function MailForm(){
         body : JSON.stringify([newValue]),
         headers :{'content-type':'application/json'}
         })  //returns a promise object
-        // .then(()=>history.push("/broadcast"))
+        .then(()=>history.push("/broadcast"))
     };
 
 

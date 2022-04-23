@@ -20,7 +20,7 @@ function App() {
             <MailForm />
           </Route>
 
-          <Route path="/mailSent">
+          <Route path="/broadcast">
             <h1>Mail Sent Successfully</h1>
           </Route>
 
