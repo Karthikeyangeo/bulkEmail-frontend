@@ -3,7 +3,9 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import {useFormik} from  "formik";
 import * as yup from 'yup';
-
+// import { useHistory } from 'react-router-dom';
+import { API } from '../globalData';
+import isEmail from 'validator/lib/isEmail'
 
 
 // This validation will split the string based on the comma and check whether it is valid email address
@@ -14,9 +16,14 @@ const email_array_validation =  yup.array()
                                         }
                                         return originalValue ? originalValue.split(/[\s,]+/) : [];
                                         })
-                                    .of(yup.string().email(({ value }) => `${value} --> not a valid email; `))
+                                    .of(yup.string()
+                                        // .email(({ value }) => `${value} --> not a valid email; `)    // Instead of this default email checker ,email validator package is used 
+                                        .required("Mail is required")
+                                        .test("is-valid", (message) => `${message.value} is invalid  `, (value) => value ? isEmail(value) : new yup.ValidationError("Invalid value")),
+                                    )
+                                  
                                     
-
+    // Email validation using regex
     // email: yup.string()
     //     .min(5,"Minimum length of email should be 5 chars")
     //     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, "Invalid Email Address")
@@ -47,16 +54,31 @@ function MailForm(){
         initialValues :{name:'',to:'',cc:'',bcc:'',subject:'',message:''},
         validationSchema : formValidationSchema,
         onSubmit:(newValue)=>{
-            newValue.to = toArray(newValue.to);
+            // newValue.to = toArray(newValue.to);
             newValue.cc = toArray(newValue.cc);
             newValue.bcc = toArray(newValue.bcc);
+            newValue.message = newValue.message.replaceAll("\n", "<br />");     // to replace the new line tag with html br element
             console.log('New User',newValue)
-            
+            addData(newValue);
             resetForm();
         }
 
     });
     
+    // const history = useHistory();
+      
+    // function to add the Data object to array 
+    const addData = (newValue) => {
+     
+        fetch(`${API}/mailsent`,{
+        method : "POST",
+        body : JSON.stringify([newValue]),
+        headers :{'content-type':'application/json'}
+        })  //returns a promise object
+        // .then(()=>history.push("/broadcast"))
+    };
+
+
     const new_style = { width: '25%' };
     return(
         <form onSubmit={handleSubmit}>
