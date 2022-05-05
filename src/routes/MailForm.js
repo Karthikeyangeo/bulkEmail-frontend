@@ -70,7 +70,7 @@ function MailForm(){
     // function to add the Data object to array 
     const addData = (newValue) => {
      
-        fetch(`${API}/mailsent`,{
+        fetch(`${API}/mailForm`,{
         method : "POST",
         body : JSON.stringify([newValue]),
         headers :{'content-type':'application/json'}
