@@ -3,12 +3,14 @@ import { MailForm } from './routes/MailForm';
 import {  useHistory,Switch, Route } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import {NotFound} from './routes/NotFound'
+import { SignUp } from './routes/SignUp';
+import {LogIn} from './routes/LogIn';
 
 
 
 function App() {
   const history = useHistory();
-  const changeURL= ()=>{history.push('/mailForm')};
+  const changeURL= ()=>{history.push('/users/signup')};
  
   return (
     <div className="App">
@@ -21,6 +23,13 @@ function App() {
 
           <Route path="/broadcast">
             <h1>Mail Sent Successfully</h1>
+          </Route>
+
+          <Route path='/users/signup'>
+          <SignUp />
+          </Route>
+          <Route path='/users/login'>
+          <LogIn />
           </Route>
 
           <Route path ="/">

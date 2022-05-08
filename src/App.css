@@ -21,3 +21,12 @@
   gap:10px;
 }
 
+.signUpForm,.logInForm{
+  display: flex;
+  flex-direction: column;
+  gap:15px;
+  width:30%;
+  margin-left: 35%;
+  margin-top: 15vh;
+  text-align: center;
+}
