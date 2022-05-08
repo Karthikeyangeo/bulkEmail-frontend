@@ -21,6 +21,8 @@ const formValidationSchema = yup.object({
 
 
 export function LogIn() {
+
+    const history = useHistory();
     const {handleSubmit,values,handleBlur,handleChange,errors,touched,resetForm} = useFormik({
         initialValues : {username: "",password:""},
         validationSchema:formValidationSchema,
@@ -28,6 +30,7 @@ export function LogIn() {
             console.log("onSubmit", values);
             addUser(values);
             resetForm();
+            history.push('/mailForm')
         },
     });
 
@@ -40,6 +43,8 @@ export function LogIn() {
             headers :{'content-type':'application/json'}
     
         })
+        .then(res=>res.json())
+        .then(json =>alert(json.message))
     };
 
     return(

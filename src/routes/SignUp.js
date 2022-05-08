@@ -2,6 +2,8 @@ import {useFormik} from  "formik";
 import * as yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { FormHelperText } from '@mui/material';
+import Link from '@mui/material/Link';
 import { API } from '../globalData';
 import { useHistory } from "react-router-dom";
 import signupIcon from '../img/signup Icon.jpg';
@@ -110,7 +112,9 @@ export function SignUp() {
                  />
                 
                 <Button variant="contained" color="success" type="submit" style={{textTransform: 'none'}}>Sign Up</Button>
+                <FormHelperText>Already have an account? <Link href="/users/login" style={{fontWeight: 'bold'}}>LogIn</Link> here</FormHelperText>
             </div>
+            
         </form>
     )
 }
