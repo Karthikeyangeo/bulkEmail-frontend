@@ -1,6 +1,6 @@
 import './App.css';
 import { MailForm } from './routes/MailForm';
-import {  useHistory,Switch, Route ,Redirect} from 'react-router-dom';
+import {  Switch, Route ,Redirect} from 'react-router-dom';
 import {NotFound} from './routes/NotFound'
 import { SignUp } from './routes/SignUp';
 import {LogIn} from './routes/LogIn';
@@ -10,7 +10,7 @@ import {Broadcast} from './routes/Broadcast';
 
 
 function App() {
-  const history = useHistory();
+
   
   
   const token=sessionStorage.getItem("token");
