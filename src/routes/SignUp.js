@@ -48,27 +48,7 @@ export function SignUp() {
 
     const history = useHistory();
 
-    // const addUser =(newUser)=> {
-    //     const tempAddUser = fetch(`${API}/users/signup`,{
-    //         method:"POST",
-    //         body:JSON.stringify(newUser),
-    //         headers :{'content-type':'application/json'}
-    
-    //     })
-    //     .then(res=>res.json())
-    //     .then(userData =>{
-    //         alert(userData.message);
-    //         console.log(userData)
-    //         console.log(userData.statusCode)
-    //         return userData
-    //     })
-        
-    //     tempAddUser.then((data)=>{
-    //         console.log(data)
-    //     })
-              
-    //     // .then(serverResponse.status ? history.push('/users/login') : history.push('/users/signup'))
-    // };
+   
 
     const addUser =async(newUser)=>{
         const tempAddUser = await fetch(`${API}/users/signup`,{

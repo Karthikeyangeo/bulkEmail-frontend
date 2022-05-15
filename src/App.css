@@ -1,6 +1,13 @@
 .App {
   text-align: center;
 }
+html{
+  height: 100%;
+}
+
+.font-link{
+  font-family: 'Roboto', sans-serif;
+}
 
 .mailForm{
   margin-top:10vh;
@@ -42,4 +49,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.logBtns{
+  display: flex;
+  margin:15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap:10px
+}
+
+.homepageLogo{
+    width: 80%;
+    height:60%;
 }
