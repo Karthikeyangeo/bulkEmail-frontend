@@ -1,42 +1,43 @@
 import './App.css';
 import { MailForm } from './routes/MailForm';
-import {  useHistory,Switch, Route } from 'react-router-dom';
-import Button from '@mui/material/Button';
+import {  useHistory,Switch, Route ,Redirect} from 'react-router-dom';
 import {NotFound} from './routes/NotFound'
 import { SignUp } from './routes/SignUp';
 import {LogIn} from './routes/LogIn';
+import {Homepage} from './routes/HomePage';
+import {Broadcast} from './routes/Broadcast';
 
 
 
 function App() {
   const history = useHistory();
-  const changeURL= ()=>{history.push('/users/signup')};
- 
+  
+  
+  const token=localStorage.getItem("token");
   return (
     <div className="App">
       <Switch>
             {/* Each route is case, eg. - case '/about': */}
   
-          <Route path="/mailForm">
-            <MailForm />
-          </Route>
-
-          <Route path="/broadcast">
-            <h1>Mail Sent Successfully</h1>
-          </Route>
-
           <Route path='/users/signup'>
           <SignUp />
           </Route>
+
           <Route path='/users/login'>
           <LogIn />
           </Route>
 
+          <Route exact path="/mailForm">
+            {token ? <MailForm /> : <Redirect to ='/users/login'/>}   {/* If token is not there it will direct to Login always */}
+          </Route>
+
+          <Route path="/broadcast">
+            {token ? <Broadcast /> : <Redirect to ='/users/login'/>}   {/* If token is not there it will direct to Login always */}         
+          </Route>
+
+          
           <Route path ="/">
-            <div className="home-page-content">
-              <h1>Bulk Email </h1> 
-              <Button color='secondary' variant='contained' onClick={changeURL}>Enter</Button>
-            </div>
+            {token ? <MailForm /> : <Homepage />}   {/* If token is there it will direct to Mailform always */}
           </Route>
           <Route path="**">
             <NotFound />

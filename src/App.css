@@ -30,3 +30,16 @@
   margin-top: 15vh;
   text-align: center;
 }
+.logOutDiv{
+  display: flex;
+  flex-direction: row-reverse;
+  margin:1%;
+}
+
+.broadcast{
+  margin-top:15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

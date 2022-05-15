@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import { API } from '../globalData';
 import isEmail from 'validator/lib/isEmail'
+import {LogOutSign} from '../logOutSign'
 
 
 // This validation will split the string based on the comma and check whether it is valid email address
@@ -73,7 +74,11 @@ function MailForm(){
         fetch(`${API}/mailForm`,{
         method : "POST",
         body : JSON.stringify([newValue]),
-        headers :{'content-type':'application/json'}
+        headers :{
+            'content-type':'application/json',
+            "x-auth-token": localStorage.getItem("token")
+        }
+
         })  //returns a promise object
         .then(()=>history.push("/broadcast"))
     };
@@ -82,6 +87,7 @@ function MailForm(){
     const new_style = { width: '25%' };
     return(
         <form onSubmit={handleSubmit}>
+            <LogOutSign />
             <div className='mailForm'>
                 <div className='mailHeader'>
                     <h1>Bulk Email </h1>

@@ -48,19 +48,42 @@ export function SignUp() {
 
     const history = useHistory();
 
-    const addUser =(newUser)=> {
-        fetch(`${API}/users/signup`,{
-            method:"POST",
-            body:JSON.stringify(newUser),
-            headers :{'content-type':'application/json'}
+    // const addUser =(newUser)=> {
+    //     const tempAddUser = fetch(`${API}/users/signup`,{
+    //         method:"POST",
+    //         body:JSON.stringify(newUser),
+    //         headers :{'content-type':'application/json'}
     
-        })
-        .then(res=>res.json())
-        .then(json =>alert(json.message))
-        .then(history.push('/users/login'))
+    //     })
+    //     .then(res=>res.json())
+    //     .then(userData =>{
+    //         alert(userData.message);
+    //         console.log(userData)
+    //         console.log(userData.statusCode)
+    //         return userData
+    //     })
         
+    //     tempAddUser.then((data)=>{
+    //         console.log(data)
+    //     })
+              
+    //     // .then(serverResponse.status ? history.push('/users/login') : history.push('/users/signup'))
+    // };
+
+    const addUser =async(newUser)=>{
+        const tempAddUser = await fetch(`${API}/users/signup`,{
+                    method:"POST",
+                    body:JSON.stringify(newUser),
+                    headers :{'content-type':'application/json'}
+            
+                })
+        const response = await tempAddUser.json();  // getting server response from POST method and changing to json string
+        console.log(response);
+        alert(response.message)
+        response.status ? history.push('/users/login') : history.push('/users/signup')  //based on boolean response from server, navigating to another page
         
-    };
+    }
+    
 
     return(
         <form onSubmit ={handleSubmit}>
@@ -113,6 +136,7 @@ export function SignUp() {
                 
                 <Button variant="contained" color="success" type="submit" style={{textTransform: 'none'}}>Sign Up</Button>
                 <FormHelperText>Already have an account? <Link href="/users/login" style={{fontWeight: 'bold'}}>LogIn</Link> here</FormHelperText>
+                
             </div>
             
         </form>

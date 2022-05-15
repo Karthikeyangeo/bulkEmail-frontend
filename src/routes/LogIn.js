@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import { API } from '../globalData';
 import { useHistory } from "react-router-dom";
 import loginIcon from  '../img/loginIcon.jpg'
+import { FormHelperText } from '@mui/material';
+import Link from '@mui/material/Link';
 
 const formValidationSchema = yup.object({
     username: yup.string()
@@ -28,23 +30,37 @@ export function LogIn() {
         validationSchema:formValidationSchema,
         onSubmit :(values) => {
             console.log("onSubmit", values);
-            addUser(values);
+            logInUser(values);
             resetForm();
-            history.push('/mailForm')
+            localStorage.setItem("currentUser",values.username);
+            
         },
     });
 
     // const history = useHistory();
-
-    const addUser =(newUser)=> {
-        fetch(`${API}/users/login`,{
+    
+    const logInUser =async(newUser)=> {
+        const tempLogIn = await fetch(`${API}/users/login`,{
             method:"POST",
             body:JSON.stringify(newUser),
             headers :{'content-type':'application/json'}
     
         })
-        .then(res=>res.json())
-        .then(json =>alert(json.message))
+        const result = await tempLogIn.json();
+        console.log(result);
+        alert(result.message);
+        if(result.status==='success'){
+            localStorage.setItem("token",result.token)
+            console.log("token",result.token)
+            history.push('/mailForm')
+        }
+        else if(result.status==='notUser'){
+            history.push('/signup')
+        }
+        else {
+            history.push('/login')
+        }
+        
     };
 
     return(
@@ -52,7 +68,7 @@ export function LogIn() {
             <div className="logInForm">
                 <div className="login-headers">
                     < img className={"logIn-logo"} alt={"LogIn Logo"} src={loginIcon} width={200} height={200}/>  
-                    {/* <h3>Sign Up </h3> */}
+                    <h3>Log In </h3>
                 </div>
 
                 <TextField
@@ -82,6 +98,7 @@ export function LogIn() {
                 />
                 
                 <Button variant="contained" color="success" type="submit" style={{textTransform: 'none'}}>Log In</Button>
+                <FormHelperText>Don't have an account? <Link href="/users/signup" style={{fontWeight: 'bold'}}>Sign Up</Link> here</FormHelperText>
             </div>
         </form>
     )
