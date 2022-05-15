@@ -10,8 +10,6 @@ import {Broadcast} from './routes/Broadcast';
 
 
 function App() {
-
-  
   
   const token=sessionStorage.getItem("token");
   return (

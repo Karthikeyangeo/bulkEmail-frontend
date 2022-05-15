@@ -55,10 +55,10 @@ export function LogIn() {
             history.push('/mailForm')
         }
         else if(result.status==='notUser'){
-            history.push('/signup')
+            history.push('/users/signup')
         }
         else {
-            history.push('/login')
+            history.push('/users/login')
         }
         
     };
