@@ -32,7 +32,7 @@ export function LogIn() {
             console.log("onSubmit", values);
             logInUser(values);
             resetForm();
-            localStorage.setItem("currentUser",values.username);
+            sessionStorage.setItem("currentUser",values.username);
             
         },
     });
@@ -50,7 +50,7 @@ export function LogIn() {
         console.log(result);
         alert(result.message);
         if(result.status==='success'){
-            localStorage.setItem("token",result.token)
+            sessionStorage.setItem("token",result.token)
             console.log("token",result.token)
             history.push('/mailForm')
         }

@@ -6,8 +6,8 @@ export function LogOutSign(){
 
     const history = useHistory();
     const logout = () => {
-        localStorage.removeItem("currentUser");
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("currentUser");
+        sessionStorage.removeItem("token");
         history.push("/users/login");
       };
     return(

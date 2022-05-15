@@ -76,7 +76,7 @@ function MailForm(){
         body : JSON.stringify([newValue]),
         headers :{
             'content-type':'application/json',
-            "x-auth-token": localStorage.getItem("token")
+            "x-auth-token": sessionStorage.getItem("token")
         }
 
         })  //returns a promise object

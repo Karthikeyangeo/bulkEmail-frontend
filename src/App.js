@@ -13,7 +13,7 @@ function App() {
   const history = useHistory();
   
   
-  const token=localStorage.getItem("token");
+  const token=sessionStorage.getItem("token");
   return (
     <div className="App">
       <Switch>
