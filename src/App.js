@@ -6,12 +6,16 @@ import { SignUp } from './routes/SignUp';
 import {LogIn} from './routes/LogIn';
 import {Homepage} from './routes/HomePage';
 import {Broadcast} from './routes/Broadcast';
+import { useEffect,useState } from 'react';
 
 
 
 function App() {
   
-  const token=sessionStorage.getItem("token");
+  const [token,setToken] = useState(sessionStorage.getItem("token"))
+  useEffect(()=>{
+    setToken(sessionStorage.getItem("token"));
+  },[])
   return (
     <div className="App">
       <Switch>
