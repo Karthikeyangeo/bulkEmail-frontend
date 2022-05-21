@@ -17,7 +17,7 @@ function App() {
   useEffect(()=>{
     console.log(`token value changed ${token}`)
     setToken(sessionStorage.getItem("token"));
-  },[token])
+  },[])
   return (
     <div className="App">
       <Switch>
