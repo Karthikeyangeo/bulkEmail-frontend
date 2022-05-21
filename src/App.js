@@ -7,17 +7,17 @@ import {LogIn} from './routes/LogIn';
 import {Homepage} from './routes/HomePage';
 import {Broadcast} from './routes/Broadcast';
 import { useEffect,useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
 function App() {
-  // const history = useHistory();
+  const history = useHistory();
   const [token,setToken] = useState(sessionStorage.getItem("token"))
   useEffect(()=>{
+    history.listen(()=>{setToken(sessionStorage.getItem("token"))});
     console.log(`token value changed ${token}`)
-    setToken(sessionStorage.getItem("token"));
-  },[])
+  },[history])
   return (
     <div className="App">
       <Switch>
