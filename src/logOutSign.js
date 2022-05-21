@@ -9,7 +9,7 @@ export function LogOutSign(){
         sessionStorage.removeItem("currentUser");
         sessionStorage.removeItem("token");
         history.replace('/users/login')     // preventing routing to anypage using back button after logout
-        // history.push("/users/login");
+        
       };
     return(
         <div className='logOutDiv'>
