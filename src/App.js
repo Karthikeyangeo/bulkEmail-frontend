@@ -30,8 +30,7 @@ function App() {
           </Route>
 
           <Route exact path="/mailForm">
-            {token ? <MailForm /> : <Redirect to ='/users/login' />}   {/* If token is not there it will direct to Login always */} 
-            {/* <MailForm /> */}
+            <MailForm />
           </Route> 
 
           <Route path="/broadcast">
