@@ -24,7 +24,7 @@ const formValidationSchema = yup.object({
 
 export function LogIn() {
 
-    alert('Kindly LogIn to send bulk mails')
+    
     const history = useHistory();
     const {handleSubmit,values,handleBlur,handleChange,errors,touched,resetForm} = useFormik({
         initialValues : {username: "",password:""},
