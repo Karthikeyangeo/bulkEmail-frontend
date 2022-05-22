@@ -64,3 +64,9 @@ html{
     width: 80%;
     height:60%;
 }
+
+.notFound{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
