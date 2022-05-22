@@ -1,23 +1,24 @@
 import './App.css';
 import { MailForm } from './routes/MailForm';
-import {  Switch, Route ,Redirect} from 'react-router-dom';
+import {  Switch, Route ,Redirect,useHistory} from 'react-router-dom';
 import {NotFound} from './routes/NotFound'
 import { SignUp } from './routes/SignUp';
 import {LogIn} from './routes/LogIn';
 import {Homepage} from './routes/HomePage';
 import {Broadcast} from './routes/Broadcast';
 import { useEffect,useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 
 
 function App() {
   const history = useHistory();
   const [token,setToken] = useState(sessionStorage.getItem("token"))
+  
   useEffect(()=>{
     history.listen(()=>{setToken(sessionStorage.getItem("token"))});
-    console.log(`token value changed ${token}`)
   },[history])
+
+  
   return (
     <div className="App">
       <Switch>
@@ -40,10 +41,10 @@ function App() {
           </Route>
 
           
-          <Route path ="/">
+          <Route exact path ="/">
             {token ? <MailForm /> : <Homepage />}   {/* If token is there it will direct to Mailform always */}
           </Route>
-          <Route path="**">
+          <Route path="*">
             <NotFound />
           </Route>
 
