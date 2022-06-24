@@ -36,10 +36,15 @@ const formValidationSchema = yup.object({
 
 
 export function SignUp() {
+
+    const monthsName = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const {handleSubmit,values,handleBlur,handleChange,errors,touched,resetForm} = useFormik({
-        initialValues : {username: "",password:"",confirmPassword:''},
+        initialValues : {username: "",password:"",confirmPassword:'',date:new Date(),displayDate:''},
         validationSchema:formValidationSchema,
         onSubmit :(values) => {
+            // change the date format
+            let d =  values.date ;
+            values.displayDate = `${d.getDate()}-${monthsName[d.getMonth()]}-${d.getFullYear()}`;
             console.log("onSubmit", values);
             addUser(values);
             resetForm();

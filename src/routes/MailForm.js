@@ -50,12 +50,15 @@ const formValidationSchema = yup.object({
     else return null;
 }
 function MailForm(){
-
+    const monthsName = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const{handleSubmit,values,handleBlur,handleChange,errors,touched,resetForm} = useFormik({
-        initialValues :{name:'',to:'',cc:'',bcc:'',subject:'',message:''},
+        initialValues :{name:'',to:'',cc:'',bcc:'',subject:'',message:'',date:new Date(),mailSendAt:''},
         validationSchema : formValidationSchema,
         onSubmit:(newValue)=>{
             // newValue.to = toArray(newValue.to);
+            let d =  newValue.date ;
+            let time= new Date().toLocaleTimeString();
+            newValue.mailSendAt = `${d.getDate()}-${monthsName[d.getMonth()]}-${d.getFullYear()} ${time}`;
             newValue.cc = toArray(newValue.cc);
             newValue.bcc = toArray(newValue.bcc);
             newValue.message = newValue.message.replaceAll("\n", "<br />");     // to replace the new line tag with html br element

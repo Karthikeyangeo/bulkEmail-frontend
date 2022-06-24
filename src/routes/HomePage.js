@@ -14,7 +14,7 @@ export function Homepage(){
             </div>
             <div className="home-page-content">
                 <h1><span className="font-link homepageHeader">Bulk Email </span></h1> 
-                < img className={"homepageLogo"} alt={"SignUp Logo"} src={emailImage} />  
+                < img className={"homepageLogo"} alt={"Homepage Logo"} src={emailImage} />  
             </div>
         </div>
         
