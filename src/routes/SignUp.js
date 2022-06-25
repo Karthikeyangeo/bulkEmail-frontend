@@ -44,7 +44,8 @@ export function SignUp() {
         onSubmit :(values) => {
             // change the date format
             let d =  values.date ;
-            values.displayDate = `${d.getDate()}-${monthsName[d.getMonth()]}-${d.getFullYear()}`;
+            let time = d.toLocaleTimeString();
+            values.displayDate = `${d.getDate()}-${monthsName[d.getMonth()]}-${d.getFullYear()} ${time}`;
             console.log("onSubmit", values);
             addUser(values);
             resetForm();
